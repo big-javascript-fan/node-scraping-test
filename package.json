@@ -1,0 +1,25 @@
+{
+  "name": "s",
+  "version": "1.0.0",
+  "description": "This is for node scraping on disneyplus homepage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/all-Jack-of-trade/node-scraping-test.git"
+  },
+  "keywords": [
+    "scraping"
+  ],
+  "author": "all-Jack-of-trade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/all-Jack-of-trade/node-scraping-test/issues"
+  },
+  "homepage": "https://github.com/all-Jack-of-trade/node-scraping-test#readme",
+  "dependencies": {
+    "puppeteer": "^2.1.1"
+  }
+}
