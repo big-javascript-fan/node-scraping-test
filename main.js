@@ -12,8 +12,8 @@ expose(async function(accountInfo) {
   
   let currentPage = await loginWithCookie(accountInfo, newProxyUrl);
   if(currentPage == null) {
-    await login(accountInfo, newProxyUrl);
-    currentPage = await loginWithCookie(accountInfo, newProxyUrl);
+    currentPage = await login(accountInfo, newProxyUrl);
+    await loginWithCookie(accountInfo, newProxyUrl);
   }
   let playlist = await getPlayList();
   let handles = await (await currentPage.driver).getAllWindowHandles();
