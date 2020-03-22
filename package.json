@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/all-Jack-of-trade/node-scraping-test#readme",
   "dependencies": {
-    "puppeteer": "^2.1.1"
+    "chromedriver": "^80.0.1",
+    "geckodriver": "^1.19.1",
+    "proxy-chain": "^0.4.4",
+    "puppeteer": "^2.1.1",
+    "selenium-webdriver": "^4.0.0-alpha.7"
   }
 }

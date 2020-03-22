@@ -1,85 +1,37 @@
-const puppeteer = require('puppeteer');
+const proxyChain = require('proxy-chain');
 
-let mainURL = 'https://www.disneyplus.com/login';   //first url to disneyplus
+const chrome = require('selenium-webdriver/chrome');
+require('chromedriver');
+const selenium = require('selenium-webdriver');
+var Page = require('./lib/basePage');
+const { login, loginWithCookie } = require('./lib/login');
+const { getPlayList } = require('./lib/playlist');
+const { searchByTitle } = require('./lib/search');
+const { play } = require('./lib/playController');
 
-const main = async () => {
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
-  // await page.setViewport({ width: 1920, height: 926 });
-  await page.goto(mainURL);
-  await page.waitFor(8000);
+(async() => {
+    const oldProxyUrl = 'http://lum-customer-hl_637ef71b-zone-static_res:ujf5m5wq32va@zproxy.lum-superproxy.io:22225';
+    const newProxyUrl = await proxyChain.anonymizeProxy(oldProxyUrl);
 
-  // disable css/font and images for fast rendering
-  await page.setRequestInterception(true);
-
-  page.on('request', (req) => {
-    if(req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image'){
-        req.abort();
+    console.log(newProxyUrl);
+    // Do your magic here...
+    let accountInfo = {
+      email: "piaoriguo@outlook.com",
+      password: "Android1234!"
     }
-    else {
-        req.continue();
+
+    let currentPage = await loginWithCookie(accountInfo, newProxyUrl);
+    if(currentPage == null) {
+      await login(accountInfo, newProxyUrl);
+      currentPage = await loginWithCookie(accountInfo, newProxyUrl);
     }
-  });
+    let playlist = await getPlayList();
+    let handles = await (await currentPage.driver).getAllWindowHandles();
+    await (await currentPage.driver).switchTo().window(handles[0]);
 
-  await page.waitForSelector("#email");
-
-  const emailInputField = await page.$('#email');
-  emailInputField.click();
-  await emailInputField.type("dtest-1984@gmail.com");
-
-  const continueButton = await page.$('button[value="submit"]');
-  
-  continueButton.click();
-
-  await page.waitFor(3000);
-  await page.waitForSelector('#password');
-
-  const passwordInputField = await page.$('#password');
-  passwordInputField.click();
-  await passwordInputField.type('Test!234');
-
-  const loginButton = await page.$('button[value="submit"]');
-  loginButton.click();
-
-  await page.waitFor(4000);
-  await page.waitForSelector('#home-collection');
-
-  loginButton.asElement().
-  // get movie details
-  let movieData = await page.evaluate(() => {
-      let movies = [];
-      // get the movie elements
-      let moviesElms = document.querySelectorAll('#home-collection > div');
-      // get the movie data
-      moviesElms.forEach((sectionElement) => {
-          let sectionJson = {};
-          try {
-              sectionJson.name = sectionElement.querySelector('h4').innerText;
-              sectionJson.items = {};
-              let sliders = sectionElement.querySelectorAll('.slick-slide');
-              sliders.forEach(slider => {
-
-                console.log(slider);
-                let item = {};
-                item.name = slider.querySelector('.image-container').getAttribute('alt');
-                item.image = slider.querySelector('img').getAttribute('src');
-                // window.history.back();
-              });
-          }
-          catch (exception){
-            console.log('error happened on dom translation');
-          }
-          movies.push(sectionJson);
-      });
-      return movies;
-  });
-
-  console.log(movieData);
-  // fs.writeFile("result.json", JSON.stringify(movieData), function(err) {
-  //   if (err) throw err;
-  //   console.log("Saved!");
-  // });
-  // console.dir(hotelData);
-};
-
-main();
+    for(var i=0; i<playlist.length; i++) {
+      currentPage = await searchByTitle(currentPage, playlist[i]);
+      currentPage = await play(currentPage);
+    }
+    await browser.close();
+})();
