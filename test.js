@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 (async () => {
   const browserOpts = {
-      headless: true,
+      headless: false,
       args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
@@ -13,7 +13,6 @@ const puppeteer = require('puppeteer');
 
   const browser = await puppeteer.launch(browserOpts);
   const page = await browser.newPage();
-  await page.goto('https://intoli.com/blog/not-possible-to-block-chrome-headless/chrome-headless-test.html');
-  await page.screenshot({path: 'headless-test-result.png'});
+  await page.goto('https://beta.music.apple.com');
 
 })();
