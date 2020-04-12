@@ -1,28 +1,38 @@
-const proxyChain = require('proxy-chain');
-require('chromedriver');
-const { expose } = require('threads/worker')
-const { login, loginWithCookie } = require('./lib/login');
-const { getPlayList } = require('./lib/playlist');
-const { searchByTitle } = require('./lib/search');
-const { play } = require('./lib/playController');
+const { expose } = require('threads');
+const { Worker } = require('worker_threads');
+const { getSetting } = require('./lib/apiService');
 
-expose(async function(accountInfo) {
-  const oldProxyUrl = 'http://lum-customer-hl_637ef71b-zone-static_res:ujf5m5wq32va@zproxy.lum-superproxy.io:22225';
-  const newProxyUrl = await proxyChain.anonymizeProxy(oldProxyUrl);
-  
-  let currentPage = await loginWithCookie(accountInfo, newProxyUrl);
-  if(currentPage == null) {
-    currentPage = await login(accountInfo, newProxyUrl);
-    await loginWithCookie(accountInfo, newProxyUrl);
-  }
-  let playlist = await getPlayList();
-  let handles = await (await currentPage.driver).getAllWindowHandles();
-  await (await currentPage.driver).switchTo().window(handles[0]);
-  
-  for(var i=0; i<playlist.length; i++) {
-    currentPage = await searchByTitle(currentPage, playlist[i]);
-    currentPage = await play(currentPage);
-  }
-  
-  currentPage.quit();
-})
+expose(async (accountInfo) => {
+  const setting = await getSetting();
+  let playHours = Math.round(Math.random() * (setting[0].max_stream - setting[0].min_stream) + setting[0].min_stream);
+  let sleepHours = 24 - playHours;
+
+  const playWorker = new Worker('./lib/play/playMain.js', { workerData: { setting, accountInfo } });
+  startPlaying(playWorker, playHours * 3600000, sleepHours * 3600000);
+});
+
+function startPlaying(worker, playHours, sleepHours) {
+  worker.postMessage('start');
+  var begin = new Date();
+  let timing = setInterval(() => {
+    let now = new Date();
+    let playTime = now - begin;
+    if(playTime > playHours) {
+      clearInterval(timing);
+      stopPlaying(worker, playHours, sleepHours);
+    }
+  }, 1000);
+}
+
+function stopPlaying(worker, playHours, sleepHours) {
+  worker.postMessage('stop');
+  var begin = new Date();
+  let timing = setInterval(() => {
+    let now = new Date();
+    let sleepTime = now - begin;
+    if(sleepTime > sleepHours) {
+      clearInterval(timing);
+      startPlaying(worker, playHours, sleepHours);
+    }
+  }, 1000);
+}
