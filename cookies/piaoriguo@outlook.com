@@ -1,0 +1,15 @@
+{"domain":".apple.com","expiry":1602647940,"httpOnly":false,"name":"sfcc","path":"/","secure":false,"value":"us"}
+{"domain":".apple.com","expiry":1602647935,"httpOnly":false,"name":"media-user-token","path":"/","secure":false,"value":"AmvOzYMdn7HY1U53Ka+y/dHzij5P9w8R2t8Eveg2JJUGzvpa4XyXlZ6U4zb/4s4C6ADsDuy+l0j3+rFNhL8zGFXARyV+6FmhnBtC4ZoG9NddIZC15C0pILB6gWhHTj9fycRxGihicX2b3+VLeO6hiC+id2X43EZFdAS6U5eyPO6JTgTcJvot3keVTVccqpL6BK1sM2pnqv8z0wme2PqESo8/ZQBePc1NnWfMGHHtqTg1AmMaEw=="}
+{"domain":".apple.com","expiry":1602647935,"httpOnly":false,"name":"pldfltcid","path":"/","secure":false,"value":"38730c6f2c084004a97e734903008ab0070"}
+{"domain":".apple.com","httpOnly":true,"name":"site","path":"/","secure":true,"value":"USA"}
+{"domain":".apple.com","expiry":1602647935,"httpOnly":false,"name":"QW12T3pZTWRuN0hZMVU1M0thK3kvZEh6aWo1UDl3OFIydDhFdmVnMkpKVUd6dnBhNFh5WGxaNlU0emIvNHM0QzZBRHNEdXkrbDBqMytyRk5oTDh6R0ZYQVJ5Vis2Rm1obkJ0QzRab0c5TmRkSVpDMTVDMHBJTEI2Z1doSFRqOWZ5Y1J4R2loaWNYMmIzK1ZMZU82aGlDK2lkMlg0M0VaRmRBUzZVNWV5UE82SlRnVGNKdm90M2tlVlRWY2NxcEw2Qksxc00ycG5xdjh6MHdtZTJQcUVTbzgvWlFCZVBjMU5uV2ZNR0hIdHFUZzFBbU1hRXc9PS5z","path":"/","secure":false,"value":"us"}
+{"domain":".apple.com","expiry":1602647930.726768,"httpOnly":true,"name":"dslang","path":"/","secure":true,"value":"US-EN"}
+{"domain":".apple.com","expiry":1602647934,"httpOnly":false,"name":"bXVzaWMuYW1wd2VicGxheS51","path":"/","secure":false,"value":"AmvOzYMdn7HY1U53Ka+y/dHzij5P9w8R2t8Eveg2JJUGzvpa4XyXlZ6U4zb/4s4C6ADsDuy+l0j3+rFNhL8zGFXARyV+6FmhnBtC4ZoG9NddIZC15C0pILB6gWhHTj9fycRxGihicX2b3+VLeO6hiC+id2X43EZFdAS6U5eyPO6JTgTcJvot3keVTVccqpL6BK1sM2pnqv8z0wme2PqESo8/ZQBePc1NnWfMGHHtqTg1AmMaEw=="}
+{"domain":".apple.com","expiry":1602647935,"httpOnly":false,"name":"itre","path":"/","secure":false,"value":"0"}
+{"domain":".apple.com","expiry":1602647934,"httpOnly":false,"name":"bXVzaWMuYW1wd2VicGxheS5j","path":"/","secure":false,"value":"38730c6f2c084004a97e734903008ab0070"}
+{"domain":".apple.com","expiry":1602647910.670141,"httpOnly":false,"name":"xp_ab","path":"/","secure":true,"value":"1#Jv0scgz+-2+zaX2t_M0#Zh4zkDd+-2+Utk2R3g0#WqjkRLH+-2+A7h2ykc2#isj11bm+-2+aR6ZxwJ1"}
+{"domain":".apple.com","expiry":1602647910.670048,"httpOnly":false,"name":"xp_ci","path":"/","secure":true,"value":"3z4mVtIyz61cz5Bwz9l1zRq1p4WBC"}
+{"domain":".apple.com","expiry":1602647934,"httpOnly":false,"name":"QW12T3pZTWRuN0hZMVU1M0thK3kvZEh6aWo1UDl3OFIydDhFdmVnMkpKVUd6dnBhNFh5WGxaNlU0emIvNHM0QzZBRHNEdXkrbDBqMytyRk5oTDh6R0ZYQVJ5Vis2Rm1obkJ0QzRab0c5TmRkSVpDMTVDMHBJTEI2Z1doSFRqOWZ5Y1J4R2loaWNYMmIzK1ZMZU82aGlDK2lkMlg0M0VaRmRBUzZVNWV5UE82SlRnVGNKdm90M2tlVlRWY2NxcEw2Qksxc00ycG5xdjh6MHdtZTJQcUVTbzgvWlFCZVBjMU5uV2ZNR0hIdHFUZzFBbU1hRXc9PS5y","path":"/","secure":false,"value":"0"}
+{"domain":".apple.com","httpOnly":false,"name":"geo","path":"/","secure":false,"value":"US"}
+{"domain":".apple.com","expiry":1602647910.67017,"httpOnly":false,"name":"xp_abc","path":"/","secure":true,"value":"A7h2ykc2#aR6ZxwJ1"}
+{"domain":".apple.com","httpOnly":false,"name":"ccl","path":"/","secure":false,"value":"sV+Rpe3DJ+qLbBwxIt7gRWEG0B87TTHM0mLXVlSSALqb8raxokuWhXdr7naP/Crrbvpk63Qa5K6C4EU2A6vAmY9XNwYAuXLbX6aB0zSHDK0="}
