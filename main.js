@@ -1,6 +1,6 @@
 const { expose } = require('threads');
 const { Worker } = require('worker_threads');
-const { getSetting } = require('./lib/apiService');
+const { getSetting, sendLogs } = require('./lib/apiService');
 
 expose(async (accountInfo) => {
   const setting = await getSetting();
@@ -8,11 +8,12 @@ expose(async (accountInfo) => {
   let sleepHours = 24 - playHours;
 
   const playWorker = new Worker('./lib/play/playMain.js', { workerData: { setting, accountInfo } });
-  startPlaying(playWorker, playHours * 3600000, sleepHours * 3600000);
+  startPlaying(playWorker, playHours * 3600000, sleepHours * 3600000, accountInfo);
 });
 
-function startPlaying(worker, playHours, sleepHours) {
+function startPlaying(worker, playHours, sleepHours, accountInfo) {
   worker.postMessage('start');
+  sendLogs(accountInfo.id, `Started streaming for ${playHours / 3600000} hours`, 0);
   var begin = new Date();
   let timing = setInterval(() => {
     let now = new Date();
@@ -24,8 +25,9 @@ function startPlaying(worker, playHours, sleepHours) {
   }, 1000);
 }
 
-function stopPlaying(worker, playHours, sleepHours) {
+function stopPlaying(worker, playHours, sleepHours, accountInfo) {
   worker.postMessage('stop');
+  sendLogs(accountInfo.id, `Started sleeping for ${sleepHours / 3600000} hours`, 0);
   var begin = new Date();
   let timing = setInterval(() => {
     let now = new Date();
