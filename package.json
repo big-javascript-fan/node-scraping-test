@@ -22,8 +22,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "chromedriver": "^80.0.1",
-    "geckodriver": "^1.19.1",
-    "performance": "^1.2.0",
     "proxy-chain": "^0.4.4",
     "puppeteer": "^2.1.1",
     "selenium-webdriver": "^4.0.0-alpha.7",
