@@ -3,6 +3,7 @@ const { getAccountList } = require('./lib/apiService');
 
 (async() => {
     let accountList = await getAccountList();
+    console.log(accountList);
     for(var index=0; index<accountList.length; index++) {
       const run = await spawn(new Worker('./main.js'));
       run(accountList[index]);
