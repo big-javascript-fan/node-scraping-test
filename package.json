@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/all-Jack-of-trade/node-scraping-test#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "chromedriver": "^80.0.1",
     "geckodriver": "^1.19.1",
     "performance": "^1.2.0",
